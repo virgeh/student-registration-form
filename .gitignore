@@ -36,3 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Ignore WebDriver executables
+src/main/resources/drivers/chromedriver.exe
+src/main/resources/drivers/geckodriver.exe

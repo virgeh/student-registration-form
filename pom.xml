@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Group ID, Artifact ID, and Version -->
+    <!-- Group ID, Artifact ID, and Version for the project -->
     <groupId>com.example</groupId>
     <artifactId>student-registration-form</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -23,25 +23,38 @@
             <version>4.25.0</version>
         </dependency>
 
-        <!-- Selenium WebDriver -->
+        <!-- Selenium Chrome Driver -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
             <version>4.25.0</version>
         </dependency>
 
-        <!-- JUnit -->
+        <!-- JUnit for optional use -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.9.3</version>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.9.3</version>
         </dependency>
-    </dependencies>
 
+        <!-- TestNG for writing and managing tests -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.8.0</version>
+        </dependency>
+
+        <!-- Logging (optional) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+
+    </dependencies>
 </project>

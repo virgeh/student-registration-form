@@ -1,0 +1,68 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test Suite" parallel="methods" thread-count="2">
+    <test name="testEmailFieldValidation">
+        <classes>
+            <class name="com.example.tests.EmailFieldValidationTest" />
+        </classes>
+    </test>
+    <test name="testFormLoad">
+        <classes>
+            <class name="com.example.tests.FormLoadTest" />
+        </classes>
+    </test>
+    <test name="testFormSubmission">
+     <classes>
+        <class name="com.example.tests.FormSubmissionTest" />
+    </classes>
+    </test>
+    <test name="testFormUsability">
+    <classes>
+        <class name="com.example.tests.FormUsabilityTest" />
+    </classes>
+    </test>
+    <test name="testMobileNumberValidation_LessThan10Digits">
+    <classes>
+        <class name="com.example.tests.MobileNumberValidationTest" />
+    </classes>
+    </test>
+    <test name="testMobileNumberValidation_NonDigitCharacters">
+        <classes>
+            <class name="com.example.tests.MobileNumberValidationTest" />
+        </classes>
+    </test>
+    <test name="testRequiredFieldValidation">
+    <classes>
+        <class name="com.example.tests.RequiredFieldValidationTest" />
+    </classes>
+    </test>
+    <test name="testAddressFields">
+    <classes>
+        <class name="com.example.tests.VerifyAddressFieldsTest" />
+    </classes>
+    </test>
+    <test name="testDateOfBirthSelection">
+    <classes>
+        <class name="com.example.tests.VerifyDateOfBirthSelectionTest" />
+    </classes>
+    </test>
+    <test name="testGenderSelection">
+    <classes>
+        <class name="com.example.tests.VerifyGenderSelectionTest" />
+    </classes>
+    </test>
+    <test name="testHobbiesSelection">
+    <classes>
+        <class name="com.example.tests.VerifyHobbiesSelectionTest" />
+    </classes>
+    </test>
+    <test name="testPictureUpload">
+    <classes>
+        <class name="com.example.tests.VerifyPictureUploadTest" />
+    </classes>
+    </test>
+    <test name="testSubjectsField">
+    <classes>
+        <class name="com.example.tests.VerifySubjectsFieldTest" />
+    </classes>
+    </test>
+</suite>

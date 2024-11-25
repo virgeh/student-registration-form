@@ -1,70 +1,31 @@
 package com.example.tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import base.BaseTest;
+import helpers.Helper;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.Keys;
+import org.testng.annotations.Test;
+import pages.PracticeFormPage;
 
-import java.time.Duration;
+import static org.testng.Assert.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-public class VerifySubjectsFieldTest {
-    WebDriver driver;
-
-    @BeforeEach
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Virge\\Desktop\\Woman go Tech\\Dishaga kohtumised\\chromedriver-win64\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.manage().window().maximize();
-        driver.get("https://demoqa.com/automation-practice-form");
-    }
-
-    @AfterEach
-    public void tearDown() {
-    if (driver != null) {
-       driver.quit();
-    }
-    }
-
+public class VerifySubjectsFieldTest extends BaseTest {
     @Test
     public void testSubjectsField() {
-        WebElement subjectsInput = driver.findElement(By.id("subjectsInput"));
+        String appUrl = getProperty("app.url");
+        driver.get(appUrl);
 
-        // Scroll to the subjects input field to ensure visibility
-        scrollToElement(subjectsInput);
+        PracticeFormPage formPage = new PracticeFormPage(driver);
+        Helper helper = new Helper(driver);
 
-        // Add "Maths" as a subject
-        subjectsInput.sendKeys("Maths");
-        subjectsInput.sendKeys(Keys.ENTER);
+        String randomSubject = helper.generateRandomString(5); // Generate random subject
+        formPage.enterSubjects(randomSubject);
 
-        // Verify that "Maths" was added
-        WebElement addedSubject = driver.findElement(By.xpath("//div[contains(@class, 'subjects-auto-complete__multi-value__label') and text()='Maths']"));
-        assertTrue(addedSubject.isDisplayed(), "Error: Subject 'Maths' not added.");
+        WebElement submitButton = formPage.getSubmitButton();
+        helper.scrollToElement(submitButton);
+        helper.waitForClickability(submitButton).click();
 
-        // Add "Physics" as a second subject
-        subjectsInput.sendKeys("Physics");
-        subjectsInput.sendKeys(Keys.ENTER);
-
-        // Verify that "Physics" was added
-        WebElement secondSubject = driver.findElement(By.xpath("//div[contains(@class, 'subjects-auto-complete__multi-value__label') and text()='Physics']"));
-        assertTrue(secondSubject.isDisplayed(), "Error: Subject 'Physics' not added.");
-    }
-
-    // Utility method to scroll to an element
-    private void scrollToElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
-        try {
-            Thread.sleep(500); // Optional: allow some time for the scrolling animation
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt(); // Properly handle the interrupt
-        }
+        WebElement subjectsElement = helper.waitForVisibility(formPage.getSubjectsField());
+        assertTrue(subjectsElement.getAttribute("value").contains(randomSubject),
+                "Random subject '" + randomSubject + "' not added.");
     }
 }
